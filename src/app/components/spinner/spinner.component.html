@@ -1,0 +1,4 @@
+<div class="p-3 flex flex-col gap-y-3 items-center">
+  <mat-spinner></mat-spinner>
+  <div *ngIf="text$ | async as text">{{ text }}</div>
+</div>
