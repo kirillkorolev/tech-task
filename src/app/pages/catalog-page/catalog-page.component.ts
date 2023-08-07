@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import { DataService } from "src/app/services";
 
 @Component({
   selector: 'catalog-page',
@@ -6,6 +7,14 @@ import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
   styleUrls: ['./catalog-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CatalogPageComponent{
-  public title = 'Catalog';
+export class CatalogPageComponent implements OnInit{
+  public title = 'Cities catalog';
+
+  public cities = this.dataService.citiesData$;
+
+  constructor(private dataService: DataService) {}
+
+  ngOnInit(): void {
+    this.dataService.saveData();
+  }
 }

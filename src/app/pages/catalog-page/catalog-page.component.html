@@ -1,1 +1,9 @@
-<div>{{ title }}</div>
+<h1>{{ title }}</h1>
+
+<ul>
+  <li *ngFor="let city of cities | async">
+    <h2>{{ city.name}}</h2>
+    <div> {{ city.founded }} </div>
+    <div> {{ city.country }} </div>
+  </li>
+</ul>
