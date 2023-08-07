@@ -1,9 +1,22 @@
-<h1>{{ title }}</h1>
+<div class="flex flex-col w-full h-screen min-h-full">
+  <app-header></app-header>
 
-<ul>
-  <li *ngFor="let city of cities | async">
-    <h2>{{ city.name}}</h2>
-    <div> {{ city.founded }} </div>
-    <div> {{ city.country }} </div>
-  </li>
-</ul>
+  <div class="p-10 grow bg-slate-200">
+    <h1>{{ title }}</h1>
+
+    <ul>
+      <li
+        class="border p-1 rounded-md border-black mb-2 last-mb-0 bg-white"
+        *ngFor="let city of cities | async"
+      >
+        <h2>{{ city.name}}</h2>
+        <div>Country: {{ city.country }} </div>
+        <div>Foundation year: {{ city.founded }} </div>
+
+      </li>
+    </ul>
+  </div>
+
+
+  <app-footer></app-footer>
+</div>
