@@ -5,7 +5,6 @@ import { CatalogPageRoutingModule } from "./catalog-page-routing.module";
 import { FooterModule, HeaderModule } from "src/app/components";
 import { CityCardComponent } from "./components";
 
-
 @NgModule({
   declarations: [
     CatalogPageComponent,
