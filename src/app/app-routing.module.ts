@@ -18,6 +18,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/index').then(p => p.DetailsPageModule),
     pathMatch: "full"
   },
+  {
+    path: '**',
+    redirectTo: CATALOG
+  }
 ];
 
 @NgModule({
