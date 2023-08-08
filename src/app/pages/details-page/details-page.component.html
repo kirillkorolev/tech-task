@@ -11,7 +11,9 @@
       <div><span class="font-medium">Continent:</span> {{ currentCity.continent}}</div>
       <div><span class="font-medium">Foundation year:</span> {{ currentCity.founded }}</div>
       <div><span class="font-medium">Population:</span> {{ currentCity.population | number: '2.' }}</div>
-      <div><span class="font-medium">Landmarks:</span> {{ currentCity.landmarks.join(', ')}}</div>
+      <div class="mb-3"><span class="font-medium">Landmarks:</span> {{ currentCity.landmarks.join(', ')}}</div>
+
+      <app-map [coordinates]="{lat: currentCity.latitude, lng: currentCity.longitude}"></app-map>
     </ng-container>
     <ng-template #loading>City details loading...</ng-template>
 

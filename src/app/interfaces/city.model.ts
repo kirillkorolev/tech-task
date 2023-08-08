@@ -3,8 +3,8 @@ export interface CityModel {
   name_native: string;
   country: string;
   continent: string;
-  latitude: string;
-  longitude:string;
+  latitude: number;
+  longitude: number;
   population: number;
   founded: number;
   landmarks: string[];
