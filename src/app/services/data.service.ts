@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable,  catchError,  delay, filter, tap } from "rxjs";
 import { CitiesDataModel, CityModel } from "../interfaces";
 import { SpinnerService } from "./spinner.service";
+import { NotificationService } from "./notification.service";
 
 @Injectable({
   providedIn: "root"
@@ -11,7 +12,8 @@ import { SpinnerService } from "./spinner.service";
 export class DataService {
   constructor(
     private httpClient: HttpClient,
-    private spinnerService: SpinnerService) {
+    private spinnerService: SpinnerService,
+    private notificationService: NotificationService) {
   }
 
   private _citiesData: BehaviorSubject<CityModel[] | null> = new BehaviorSubject<CityModel[] | null>(null)
@@ -22,7 +24,7 @@ export class DataService {
       .pipe(
         tap(() => this.spinnerService.showSpinner('Cities list is loading...')),
         // TODO delete delay when real backend will be connected
-        delay(15000),
+        delay(1000),
         catchError((error: any) => {
           throw 'error in cities source. Details: ' + error;
         })
@@ -31,9 +33,11 @@ export class DataService {
         next: (data: CitiesDataModel) => {
           this._citiesData.next(data.cities);
           this.spinnerService.closeSpinner();
+          this.notificationService.success('Success! Cities list is loaded!')
         },
         error: () => {
           this.spinnerService.closeSpinner();
+          this.notificationService.error('Error! Please reload the page!')
         }
       })
   }
