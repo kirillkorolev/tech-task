@@ -2,7 +2,18 @@
   <app-header></app-header>
 
   <div class="p-10 grow bg-slate-200">
-    <h1>City details</h1>
+    <h1>{{ title }}</h1>
+
+    <ng-container *ngIf="currentCity; else loading">
+      <h2>{{ currentCity.name }}</h2>
+
+      <div><span class="font-medium">Country:</span> {{ currentCity.country }} </div>
+      <div><span class="font-medium">Continent:</span> {{ currentCity.continent}}</div>
+      <div><span class="font-medium">Foundation year:</span> {{ currentCity.founded }}</div>
+      <div><span class="font-medium">Population:</span> {{ currentCity.population | number: '2.' }}</div>
+      <div><span class="font-medium">Landmarks:</span> {{ currentCity.landmarks.join(', ')}}</div>
+    </ng-container>
+    <ng-template #loading>City details loading...</ng-template>
 
   </div>
 

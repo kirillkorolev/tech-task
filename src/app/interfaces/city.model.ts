@@ -8,4 +8,5 @@ export interface CityModel {
   population: number;
   founded: number;
   landmarks: string[];
+  id: number
 }
