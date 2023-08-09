@@ -1,6 +1,6 @@
 <mat-toolbar color="primary">
-  <a mat-icon-button aria-label="To the satrt page" routerLink="/">
+  <a mat-icon-button routerLink="/"  data-test-id="home-link" aria-label="To home page" title="To home page">
     <mat-icon>home</mat-icon>
   </a>
-  <span>{{ title }}</span>
+  <span data-test-id="app-name">{{ title }}</span>
 </mat-toolbar>

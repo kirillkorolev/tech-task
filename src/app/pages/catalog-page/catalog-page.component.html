@@ -7,6 +7,7 @@
       <ul class="grid gap-2 grid-cols-[repeat(auto-fit,_minmax(250px,_1fr))]">
         <li
           *ngFor="let city of cities; trackBy: trackByCityName"
+          data-test-id="city-card"
         >
           <app-city-card [data]="city"></app-city-card>
         </li>
