@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable,  catchError,  delay, filter, switchMap, tap } from "rxjs";
 import { CitiesDataModel, CityModel } from "../interfaces";
@@ -20,30 +20,32 @@ export class DataService {
   public citiesData$: Observable<CityModel[] | null> = this._citiesData;
 
   saveData() {
+    // If Data was not loaded before, we're making server response
     this.citiesData$
       .pipe(
         filter(data => data === null),
-        switchMap(() => this.httpClient.get<CitiesDataModel>('assets/cities.json')),
-        tap(() => this.spinnerService.showSpinner('Cities list is loading...')),
+        switchMap(() => {
+          this.spinnerService.showSpinner('Cities list is loading...')
+          // get static data form json
+          return this.httpClient.get<CitiesDataModel>('assets/cities.json')
+        }),
         // TODO delete delay when real backend will be connected
         delay(1000),
-        catchError((error: any) => {
-          throw 'error in cities source. Details: ' + error;
-        })
       )
       .subscribe({
         next: (data: CitiesDataModel) => {
           const cities = data.cities.map((item, i) => {
-            return {  ...item, id: i+1}
+            return {  ...item, id: i++}
           })
 
           this._citiesData.next(cities);
           this.spinnerService.closeSpinner();
           this.notificationService.success('Success! Cities list is loaded!')
         },
-        error: () => {
+        error: (err: unknown) => {
+          const error = err as HttpErrorResponse
           this.spinnerService.closeSpinner();
-          this.notificationService.error('Error! Please reload the page!')
+          this.notificationService.error(`Error: ${error.message}. Please reload the page!`)
         }
       })
   }
