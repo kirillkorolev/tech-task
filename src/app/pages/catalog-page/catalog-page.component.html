@@ -1,0 +1,20 @@
+<div class="flex flex-col w-full h-screen min-h-full">
+  <app-header></app-header>
+
+  <div class="p-10 grow bg-slate-200">
+    <h1>{{ title }}</h1>
+    <ng-container *ngIf="cities$ | async as cities; else loading">
+      <ul class="grid gap-2 grid-cols-[repeat(auto-fit,_minmax(250px,_1fr))]">
+        <li
+          *ngFor="let city of cities; trackBy: trackByCityName"
+          data-test-id="city-card"
+        >
+          <app-city-card [data]="city"></app-city-card>
+        </li>
+      </ul>
+    </ng-container>
+    <ng-template #loading>Loading...</ng-template>
+  </div>
+
+  <app-footer></app-footer>
+</div>

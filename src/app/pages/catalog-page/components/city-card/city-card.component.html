@@ -1,0 +1,11 @@
+<div class="border p-2 rounded-md border-black bg-white h-full">
+  <h2>
+    <a [routerLink]="['/details', data.id]" class="hover:underline focus:underline active:opacity-50">{{ data.name}}</a>
+  </h2>
+
+  <div><span class="font-medium">Country:</span> {{ data.country }} </div>
+  <div><span class="font-medium">Continent:</span> {{ data.continent}}</div>
+  <div><span class="font-medium">Foundation year:</span> {{ data.founded }}</div>
+  <div><span class="font-medium">Population:</span> {{ data.population | number: '2.' }}</div>
+  <div><span class="font-medium">Landmarks:</span> {{ data.landmarks.join(', ')}}</div>
+</div>
