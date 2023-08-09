@@ -14,4 +14,9 @@ describe('Details page', () => {
     cy.visit('/details/1');
     cy.get('h2').contains('Sydney');
   })
+
+  it('Should show map', () => {
+    cy.visit('/details/1');
+    cy.get('app-map').should('exist')
+  })
 })

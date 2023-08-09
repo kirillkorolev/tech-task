@@ -35,7 +35,7 @@ export class DataService {
       .subscribe({
         next: (data: CitiesDataModel) => {
           const cities = data.cities.map((item, i) => {
-            return {  ...item, id: i++}
+            return {  ...item, id: i + 1}
           })
 
           this._citiesData.next(cities);
