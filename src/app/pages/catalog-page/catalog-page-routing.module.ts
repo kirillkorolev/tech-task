@@ -3,10 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { CatalogPageComponent } from "./catalog-page.component";
 
 const routes: Routes = [
-    {
-        path: '',
-        component: CatalogPageComponent
-    },
+  {
+    path: '',
+    component: CatalogPageComponent
+  },
 ];
 
 @NgModule({
